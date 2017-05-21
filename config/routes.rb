@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :ingredients
   get 'static/welcome'
 
   devise_for :users

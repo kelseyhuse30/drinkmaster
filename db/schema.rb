@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170521215201) do
+ActiveRecord::Schema.define(version: 20170521221510) do
 
   create_table "cocktails", force: :cascade do |t|
     t.string   "name"
@@ -18,6 +18,23 @@ ActiveRecord::Schema.define(version: 20170521215201) do
     t.string   "glass"
     t.text     "instructions"
     t.boolean  "custom"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  create_table "cocktails_ingredients", force: :cascade do |t|
+    t.integer  "cocktail_id"
+    t.integer  "ingredient_id"
+    t.string   "quantity"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.index ["cocktail_id"], name: "index_cocktails_ingredients_on_cocktail_id"
+    t.index ["ingredient_id"], name: "index_cocktails_ingredients_on_ingredient_id"
+  end
+
+  create_table "ingredients", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "alcohol_type"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
   end
@@ -37,6 +54,17 @@ ActiveRecord::Schema.define(version: 20170521215201) do
     t.datetime "updated_at",                          null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  create_table "users_ingredients", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "ingredient_id"
+    t.string   "quantity"
+    t.datetime "exp_date"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.index ["ingredient_id"], name: "index_users_ingredients_on_ingredient_id"
+    t.index ["user_id"], name: "index_users_ingredients_on_user_id"
   end
 
 end
