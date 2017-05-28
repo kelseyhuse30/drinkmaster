@@ -27,10 +27,11 @@ class CocktailsController < ApplicationController
   def create
     @user = current_user
     @cocktail = @user.cocktails.build(cocktail_params)
+    binding.pry
     if @cocktail.save
       redirect_to cocktail_path(@cocktail)
     else
-      render 'new'
+      redirect_to new_cocktail_path
     end
   end
 
@@ -66,8 +67,8 @@ class CocktailsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def cocktail_params
-      params.require(:cocktail).permit(:name, :creator_id, :instructions, :alcoholic,
-       recipe_ingredients_attributes: [:id, :quantity,
+      params.require(:cocktail).permit(:name, :instructions, :alcoholic,
+       cocktail_ingredients_attributes: [:quantity,
        ingredient_attributes: [:name]])
     end
 end

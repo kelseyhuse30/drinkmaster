@@ -7,7 +7,7 @@
 
 <p>
   <strong>Creator:</strong>
-  <%= @cocktail.user_id %>
+  <%= @cocktail.user.email %>
 </p>
 
 <p>
@@ -17,8 +17,16 @@
 
 <p>
   <strong>Alcoholic?</strong>
-  <%= @cocktail.alcoholic %>
+  <%= @cocktail.alcoholic ? "Yes" : "No" %>
 </p>
+
+<p>
+	<strong>Ingredients:</strong>
+</p>
+
+<% @cocktail.cocktail_ingredients.each do |ci| %>
+	<p><%= ci.quantity %> of <%= ci.ingredient.name %></p>
+<% end %>
 
 <%= link_to 'Edit', edit_cocktail_path(@cocktail) %> |
 <%= link_to 'Back', cocktails_path %>
