@@ -17,24 +17,28 @@
   </div>
 
   <div class="field">
-    <%= f.label :creator_id %>
-    <%= f.number_field :creator_id %>
-  </div>
-
-  <div class="field">
-    <%= f.label :glass %>
-    <%= f.text_field :glass %>
-  </div>
-
-  <div class="field">
     <%= f.label :instructions %>
     <%= f.text_area :instructions %>
   </div>
 
   <div class="field">
-    <%= f.label :custom %>
-    <%= f.check_box :custom %>
+    <%= f.label :alcoholic, "Alcoholic beverage?" %>
+    <%= f.check_box :alcoholic %>
   </div>
+
+  <h3>Ingredients</h3>
+
+<% 5.times do %>
+    <%= f.fields_for :cocktail_ingredients do |ci| %>
+      <%= ci.label :quantity %>
+      <%= ci.text_field :quantity %>
+
+    <%= ci.fields_for :ingredient do |i| %>
+      <%= i.label :name %>
+      <%= i.text_field :name %><br>
+    <% end %>
+  <% end %>
+<% end %>  
 
   <div class="actions">
     <%= f.submit %>

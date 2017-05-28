@@ -15,6 +15,7 @@ class CocktailsController < ApplicationController
   # GET /cocktails/new
   def new
     @cocktail = Cocktail.new
+    @cocktail.cocktail_ingredients.build.build_ingredient
   end
 
   # GET /cocktails/1/edit
@@ -24,16 +25,12 @@ class CocktailsController < ApplicationController
   # POST /cocktails
   # POST /cocktails.json
   def create
-    @cocktail = Cocktail.new(cocktail_params)
-
-    respond_to do |format|
-      if @cocktail.save
-        format.html { redirect_to @cocktail, notice: 'Cocktail was successfully created.' }
-        format.json { render :show, status: :created, location: @cocktail }
-      else
-        format.html { render :new }
-        format.json { render json: @cocktail.errors, status: :unprocessable_entity }
-      end
+    @user = current_user
+    @cocktail = @user.cocktails.build(cocktail_params)
+    if @cocktail.save
+      redirect_to cocktail_path(@cocktail)
+    else
+      render 'new'
     end
   end
 
@@ -69,6 +66,8 @@ class CocktailsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def cocktail_params
-      params.require(:cocktail).permit(:name, :creator_id, :glass, :instructions, :custom)
+      params.require(:cocktail).permit(:name, :creator_id, :instructions, :alcoholic,
+       recipe_ingredients_attributes: [:id, :quantity,
+       ingredient_attributes: [:name]])
     end
 end

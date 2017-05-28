@@ -7,12 +7,7 @@
 
 <p>
   <strong>Creator:</strong>
-  <%= @cocktail.creator_id %>
-</p>
-
-<p>
-  <strong>Glass:</strong>
-  <%= @cocktail.glass %>
+  <%= @cocktail.user_id %>
 </p>
 
 <p>
@@ -21,8 +16,8 @@
 </p>
 
 <p>
-  <strong>Custom:</strong>
-  <%= @cocktail.custom %>
+  <strong>Alcoholic?</strong>
+  <%= @cocktail.alcoholic %>
 </p>
 
 <%= link_to 'Edit', edit_cocktail_path(@cocktail) %> |

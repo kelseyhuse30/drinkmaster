@@ -12,31 +12,29 @@
 
 ActiveRecord::Schema.define(version: 20170521221510) do
 
-  create_table "cocktails", force: :cascade do |t|
-    t.string   "name"
-    t.integer  "creator_id"
-    t.string   "glass"
-    t.text     "instructions"
-    t.boolean  "custom"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-  end
-
-  create_table "cocktails_ingredients", force: :cascade do |t|
+  create_table "cocktail_ingredients", force: :cascade do |t|
     t.integer  "cocktail_id"
     t.integer  "ingredient_id"
     t.string   "quantity"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
-    t.index ["cocktail_id"], name: "index_cocktails_ingredients_on_cocktail_id"
-    t.index ["ingredient_id"], name: "index_cocktails_ingredients_on_ingredient_id"
+    t.index ["cocktail_id"], name: "index_cocktail_ingredients_on_cocktail_id"
+    t.index ["ingredient_id"], name: "index_cocktail_ingredients_on_ingredient_id"
+  end
+
+  create_table "cocktails", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "user_id"
+    t.text     "instructions"
+    t.boolean  "alcoholic"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
   create_table "ingredients", force: :cascade do |t|
     t.string   "name"
-    t.integer  "alcohol_type"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|

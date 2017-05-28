@@ -7,9 +7,8 @@
     <tr>
       <th>Name</th>
       <th>Creator</th>
-      <th>Glass</th>
       <th>Instructions</th>
-      <th>Custom</th>
+      <th>Alcoholic?</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -18,10 +17,9 @@
     <% @cocktails.each do |cocktail| %>
       <tr>
         <td><%= cocktail.name %></td>
-        <td><%= cocktail.creator_id %></td>
-        <td><%= cocktail.glass %></td>
+        <td><%= cocktail.user.email %></td>
         <td><%= cocktail.instructions %></td>
-        <td><%= cocktail.custom %></td>
+        <td><%= cocktail.alcoholic %></td>
         <td><%= link_to 'Show', cocktail %></td>
         <td><%= link_to 'Edit', edit_cocktail_path(cocktail) %></td>
         <td><%= link_to 'Destroy', cocktail, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -31,5 +29,6 @@
 </table>
 
 <br>
-
-<%= link_to 'New Cocktail', new_cocktail_path %>
+<% if current_user %>
+  <%= link_to 'New Cocktail', new_cocktail_path %>
+<% end %>
