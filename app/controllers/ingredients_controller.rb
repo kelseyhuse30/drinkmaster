@@ -4,7 +4,11 @@ class IngredientsController < ApplicationController
   # GET /ingredients
   # GET /ingredients.json
   def index
-    @ingredients = Ingredient.all
+    if params[:user_id]
+      @ingredients = User.find(params[:user_id]).ingredients
+    else
+      @ingredients = Ingredient.all
+    end
   end
 
   # GET /ingredients/1

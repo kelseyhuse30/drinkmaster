@@ -1,10 +1,16 @@
 class CocktailsController < ApplicationController
   before_action :set_cocktail, only: [:show, :edit, :update, :destroy]
+  before_action :require_login, only: [:new, :create, :update, :destroy]
 
   # GET /cocktails
   # GET /cocktails.json
   def index
     @cocktails = Cocktail.all
+  end
+
+  def mocktails
+    @cocktails = Cocktail.mocktails
+    render 'index'
   end
 
   # GET /cocktails/1
@@ -60,6 +66,13 @@ class CocktailsController < ApplicationController
   end
 
   private
+
+    def require_login
+      if !session.include? :user_id   
+        flash[:alert] = "Must be logged in" 
+        redirect_to root_path
+      end
+    end
     # Use callbacks to share common setup or constraints between actions.
     def set_cocktail
       @cocktail = Cocktail.find(params[:id])

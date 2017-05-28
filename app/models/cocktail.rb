@@ -5,4 +5,9 @@ class Cocktail < ApplicationRecord
 	validates :name, presence: true
 	accepts_nested_attributes_for :cocktail_ingredients, :reject_if => proc { |attr| attr[:quantity].blank? && attr[:ingredient_attributes][:name].blank? }
 
+	def self.mocktails
+		Cocktail.all.select { |cocktail|
+			!cocktail.alcoholic }
+	end
+
 end
