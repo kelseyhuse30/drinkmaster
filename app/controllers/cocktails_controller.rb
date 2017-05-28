@@ -10,6 +10,7 @@ class CocktailsController < ApplicationController
   # GET /cocktails/1
   # GET /cocktails/1.json
   def show
+    binding.pry
   end
 
   # GET /cocktails/new
@@ -27,8 +28,7 @@ class CocktailsController < ApplicationController
   def create
     @user = current_user
     @cocktail = @user.cocktails.build(cocktail_params)
-    binding.pry
-    if @cocktail.save
+    if @cocktail.save!
       redirect_to cocktail_path(@cocktail)
     else
       redirect_to new_cocktail_path

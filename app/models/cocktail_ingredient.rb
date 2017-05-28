@@ -1,6 +1,8 @@
 class CocktailIngredient < ApplicationRecord
-  belongs_to :cocktail
-  belongs_to :ingredient
+  belongs_to :cocktail, optional: true
+  belongs_to :ingredient, optional: true
+
+  validates :quantity, presence: true
 
   def ingredient_attributes=(ingredient_attributes)
     ingredient_attributes.values.each do |attribute|
