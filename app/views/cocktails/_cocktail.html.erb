@@ -1,7 +1,7 @@
 <h3><%= cocktail.name %></h3>
 
 <p>
-  <%= @cocktail.alcoholic ? "Alcoholic Beverage" : "Non-alcoholic" %><br>
+  <%= alcoholic?(@cocktail) %><br>
   <strong>Created by:</strong>
   <%= link_to @cocktail.user.email, user_cocktails_path(@cocktail.user) %><br>
 </p>

@@ -4,7 +4,7 @@
   <h1>Cocktails</h1>
 <% end %>
   <% @cocktails.each do |cocktail| %>
-    <%= cocktail.name %> - <%= cocktail.alcoholic ? "Alcoholic Beverage" : "Non-alcoholic" %>
+    <%= cocktail.name %> - <%= alcoholic?(cocktail) %>
     <%= link_to 'See Instructions', cocktail %><br>
   <% end %>
 
