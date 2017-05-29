@@ -3,7 +3,7 @@
 <p>
   <%= @cocktail.alcoholic ? "Alcoholic Beverage" : "Non-alcoholic" %><br>
   <strong>Created by:</strong>
-  <%= @cocktail.user.email %><br>
+  <%= link_to @cocktail.user.email, user_cocktails_path(@cocktail.user) %><br>
 </p>
 
 <p>

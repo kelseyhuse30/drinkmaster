@@ -5,7 +5,11 @@ class CocktailsController < ApplicationController
   # GET /cocktails
   # GET /cocktails.json
   def index
-    @cocktails = Cocktail.all
+    if params[:user_id]
+      @cocktails = User.find(params[:user_id]).cocktails
+    else
+      @cocktails = Cocktail.all
+    end
   end
 
   def mocktails
