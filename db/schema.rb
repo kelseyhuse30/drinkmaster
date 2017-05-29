@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170521221200) do
+ActiveRecord::Schema.define(version: 20170529182840) do
 
   create_table "cocktail_ingredients", force: :cascade do |t|
     t.integer  "cocktail_id"
@@ -50,6 +50,10 @@ ActiveRecord::Schema.define(version: 20170521221200) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.string   "provider"
+    t.string   "uid"
+    t.string   "oauth_token"
+    t.datetime "oauth_expires_at"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

@@ -4,9 +4,7 @@ class IngredientsController < ApplicationController
   # GET /ingredients
   # GET /ingredients.json
   def index
-    if params[:user_id]
-      @ingredients = User.find(params[:user_id]).ingredients
-    elsif params[:cocktail_id]
+    if params[:cocktail_id]
       @ingredients = Cocktail.find(params[:cocktail_id]).ingredients
     else
       @ingredients = Ingredient.all

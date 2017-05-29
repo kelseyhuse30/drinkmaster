@@ -33,7 +33,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'bcrypt', '~> 3.1.7'
 gem 'devise'
 gem 'omniauth'
-gem 'omniauth-facebook'
+gem "omniauth-google-oauth2", "~> 0.2.1"
 gem 'pry'
 
 gem 'bootstrap', '~> 4.0.0.alpha6'

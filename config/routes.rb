@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
-  get 'static/welcome'
+	root to: "static#welcome"
 
-  devise_for :users
+  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
   resources :cocktails, :ingredients
 
   resources :users, only: [:show] do
@@ -11,11 +11,6 @@ Rails.application.routes.draw do
   resources :cocktails, only: [:show] do
   	resources :ingredients, only: [:index, :new, :create]
   end
-  
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  root to: "static#welcome"
-
-  get '/auth/facebook/callback' => 'sessions#omnicreate'
 
   get '/mocktails' => 'cocktails#mocktails'
 

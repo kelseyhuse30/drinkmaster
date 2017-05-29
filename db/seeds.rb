@@ -5,6 +5,19 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+users = User.create([
+	{ email: 'user1@gmail.com' },
+	{ email: 'user2@gmail.com' },
+	{ email: 'user3@gmail.com' },
+	{ email: 'user4@gmail.com' },
+	{ email: 'user5@gmail.com' },
+	{ email: 'user6@gmail.com' },
+	{ email: 'user7@gmail.com' },
+	{ email: 'user8@gmail.com' },
+	{ email: 'user9@gmail.com' },
+	{ email: 'user10@gmail.com' },
+	])
+	}
 
 ingredients = Ingredient.create([
 	{ name: 'Beefeater Gin' },
