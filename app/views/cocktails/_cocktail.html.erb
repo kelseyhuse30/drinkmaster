@@ -1,0 +1,21 @@
+<h3><%= cocktail.name %></h3>
+
+<p>
+  <%= @cocktail.alcoholic ? "Alcoholic Beverage" : "Non-alcoholic" %><br>
+  <strong>Created by:</strong>
+  <%= @cocktail.user.email %><br>
+</p>
+
+<p>
+  <strong>Instructions:</strong>
+  <%= @cocktail.instructions %>
+</p>
+
+<p>
+	<strong>Ingredients:</strong>
+  <ul>
+  <% @cocktail.cocktail_ingredients.each do |ci| %>
+  	<li><%= ci.quantity %> of <%= ci.ingredient.name %></li>
+  <% end %>
+  </ul>
+</p>

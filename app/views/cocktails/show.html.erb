@@ -1,32 +1,4 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Name:</strong>
-  <%= @cocktail.name %>
-</p>
-
-<p>
-  <strong>Creator:</strong>
-  <%= @cocktail.user.email %>
-</p>
-
-<p>
-  <strong>Instructions:</strong>
-  <%= @cocktail.instructions %>
-</p>
-
-<p>
-  <strong>Alcoholic?</strong>
-  <%= @cocktail.alcoholic ? "Yes" : "No" %>
-</p>
-
-<p>
-	<strong>Ingredients:</strong>
-</p>
-
-<% @cocktail.cocktail_ingredients.each do |ci| %>
-	<p><%= ci.quantity %> of <%= ci.ingredient.name %></p>
-<% end %>
+<%= render 'cocktail', cocktail: @cocktail %>
 
 <%= link_to 'Edit', edit_cocktail_path(@cocktail) %> |
 <%= link_to 'Back', cocktails_path %>

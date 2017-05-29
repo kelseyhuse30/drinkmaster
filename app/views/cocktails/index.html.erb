@@ -1,34 +1,23 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Cocktails</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Creator</th>
-      <th>Instructions</th>
-      <th>Alcoholic?</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @cocktails.each do |cocktail| %>
-      <tr>
-        <td><%= cocktail.name %></td>
-        <td><%= cocktail.user.email %></td>
-        <td><%= cocktail.instructions %></td>
-        <td><%= cocktail.alcoholic %></td>
-        <td><%= link_to 'Show', cocktail %></td>
-        <td><%= link_to 'Edit', edit_cocktail_path(cocktail) %></td>
-        <td><%= link_to 'Destroy', cocktail, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<% if current_page?(mocktails_path) %>
+  <h1>Mocktails</h1>
+<% else %>
+  <h1>Cocktails</h1>
+<% end %>
+  <% @cocktails.each do |cocktail| %>
+    <%= cocktail.name %> - <%= cocktail.alcoholic ? "Alcoholic Beverage" : "Non-alcoholic" %>
+    <%= link_to 'See Instructions', cocktail %><br>
+  <% end %>
 
 <br>
 <% if current_user %>
-  <%= link_to 'New Cocktail', new_cocktail_path %>
+  <%= link_to 'New Cocktail', new_cocktail_path %><br>
+  <% if current_page?(mocktails_path) %>
+    <%= link_to 'See Alcoholic Cocktails', cocktails_path %>
+  <% else %>
+    <%= link_to 'See Non-Alcoholic Mocktails', mocktails_path %>
+  <% end %>
+  
+<% else %>
+  <%= link_to "Sign In to create a Recipe", new_user_session_path %>
 <% end %>
+

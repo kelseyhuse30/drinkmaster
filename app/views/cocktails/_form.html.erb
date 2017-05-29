@@ -28,17 +28,15 @@
 
   <h3>Ingredients</h3>
 
-<% 5.times do %>
     <%= f.fields_for :cocktail_ingredients do |ci| %>
       <%= ci.label :quantity %>
       <%= ci.text_field :quantity %>
 
-    <%= ci.fields_for :ingredient do |i| %>
-      <%= i.label :name %>
-      <%= i.text_field :name %><br>
+      <%= ci.fields_for :ingredient do |i| %>
+        <%= i.label :name %>
+        <%= i.text_field :name %><br>
+      <% end %>
     <% end %>
-  <% end %>
-<% end %>  
 
   <div class="actions">
     <%= f.submit %>

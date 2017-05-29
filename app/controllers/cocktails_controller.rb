@@ -16,13 +16,13 @@ class CocktailsController < ApplicationController
   # GET /cocktails/1
   # GET /cocktails/1.json
   def show
-    binding.pry
+
   end
 
   # GET /cocktails/new
   def new
     @cocktail = Cocktail.new
-    @cocktail.cocktail_ingredients.build.build_ingredient
+    5.times { @cocktail.cocktail_ingredients.build.build_ingredient }
   end
 
   # GET /cocktails/1/edit
@@ -68,7 +68,7 @@ class CocktailsController < ApplicationController
   private
 
     def require_login
-      if !session.include? :user_id   
+      if !user_signed_in?  
         flash[:alert] = "Must be logged in" 
         redirect_to root_path
       end

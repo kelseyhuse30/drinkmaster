@@ -1,1 +1,31 @@
 @import "bootstrap";
+@import url('https://fonts.googleapis.com/css?family=Poppins|Work+Sans');
+
+* {
+	font-family: 'Work Sans', sans-serif;
+}
+
+h1 {
+	font-family: 'Poppins', serif;
+}
+
+body {
+	background: #32213A;
+	background: -webkit-gradient(linear, left top, left bottom, from(#32213A), to(#383B53));
+	background: -o-linear-gradient(#32213A, #383B53);
+  background: -moz-linear-gradient(#32213A, #383B53);
+  background: linear-gradient(#32213A, #383B53);
+  background-repeat: no-repeat;
+  min-height: 700px;
+}
+
+div.view {
+	border: solid black 2px;
+	background-color: white;
+	padding: 10px;
+	min-height: 400px;
+}
+
+img {
+	width: 100%
+}
