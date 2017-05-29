@@ -1,7 +1,7 @@
 <%= form_for(cocktail) do |f| %>
   <% if cocktail.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(cocktail.errors.count, "error") %> prohibited this cocktail from being saved:</h2>
+      <h4><%= pluralize(cocktail.errors.count, "error") %> prohibited this cocktail from being saved:</h4>
 
       <ul>
       <% cocktail.errors.full_messages.each do |message| %>
