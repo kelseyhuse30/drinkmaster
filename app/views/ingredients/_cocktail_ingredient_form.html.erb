@@ -1,0 +1,16 @@
+<%= form_for(@ingredient) do |f| %>
+	<%= f.hidden_field :cocktail_id, :value => @cocktail.id %>
+
+	<%= f.fields_for :cocktail_ingredient do |i| %>
+		<%= i.label :quantity %>
+		<%= i.text_field :quantity %>
+	<% end %>
+
+	<%= f.label :name %>
+	<%= f.text_field :name %><br>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+
+<% end %>

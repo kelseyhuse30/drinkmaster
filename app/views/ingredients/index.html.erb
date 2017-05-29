@@ -22,4 +22,10 @@
 
 <br>
 
-<%= link_to 'New Ingredient', new_ingredient_path %>
+
+<% if current_page?(ingredients_path) %>
+  <%= link_to 'New Ingredient', new_ingredient_path %>
+<% elsif current_page?(cocktail_ingredients_path) %>
+  <%= link_to 'Add Ingredient to this Recipe', new_cocktail_ingredient_path %>
+<% end %>
+

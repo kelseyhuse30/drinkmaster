@@ -6,6 +6,8 @@ class IngredientsController < ApplicationController
   def index
     if params[:user_id]
       @ingredients = User.find(params[:user_id]).ingredients
+    elsif params[:cocktail_id]
+      @ingredients = Cocktail.find(params[:cocktail_id]).ingredients
     else
       @ingredients = Ingredient.all
     end
@@ -18,7 +20,13 @@ class IngredientsController < ApplicationController
 
   # GET /ingredients/new
   def new
-    @ingredient = Ingredient.new
+    if params[:cocktail_id]
+      @cocktail = Cocktail.find(params[:cocktail_id])
+      @cocktail_ingredient = @cocktail.cocktail_ingredients.build
+      @ingredient = @cocktail_ingredient.build_ingredient
+    else
+      @ingredient = Ingredient.new
+    end
   end
 
   # GET /ingredients/1/edit
@@ -28,15 +36,21 @@ class IngredientsController < ApplicationController
   # POST /ingredients
   # POST /ingredients.json
   def create
-    @ingredient = Ingredient.new(ingredient_params)
-
-    respond_to do |format|
-      if @ingredient.save
-        format.html { redirect_to @ingredient, notice: 'Ingredient was successfully created.' }
-        format.json { render :show, status: :created, location: @ingredient }
+    if ingredient_params[:cocktail_id]
+      @cocktail = Cocktail.find(ingredient_params[:cocktail_id])
+      @ingredient = Ingredient.find_or_create_by(name: ingredient_params[:name])
+      @cocktail.cocktail_ingredients.build(:ingredient_id => @ingredient.id, :quantity => ingredient_params[:cocktail_ingredient][:quantity])
+      if @cocktail.save!
+        redirect_to cocktail_path(@cocktail)
       else
-        format.html { render :new }
-        format.json { render json: @ingredient.errors, status: :unprocessable_entity }
+      redirect_to new_cocktail_ingredient_path(@cocktail)
+      end
+    else
+      @ingredient = Ingredient.create(ingredient_params)
+      if @ingredient.save
+        redirect_to ingredients_path
+      else
+        render 'new'
       end
     end
   end
@@ -73,6 +87,6 @@ class IngredientsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def ingredient_params
-      params.require(:ingredient).permit(:name, :alcohol_type)
+      params.require(:ingredient).permit(:name, :cocktail_id, cocktail_ingredient: [:quantity])
     end
 end
