@@ -5,7 +5,12 @@ $(function(){
 function attachListeners(){
 	$("#comments").on("click", function(){
 		var id = $(this).data("id");
-		getComments(id)
+		getComments(id);
+	});
+
+	$("next").on("click", function(){
+		var id = $(this).data("id");
+		getCocktail(id);
 	})
 };
 
