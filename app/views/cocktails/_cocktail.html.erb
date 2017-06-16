@@ -12,10 +12,10 @@
 </p>
 
 <p>
-	<%= link_to "Ingredients", cocktail_ingredients_path(@cocktail) %>
+  <%= link_to "Ingredients", cocktail_ingredients_path(@cocktail) %>
   <ul>
   <% @cocktail.cocktail_ingredients.each do |ci| %>
-  	<li><%= ci.quantity %> of <%= ci.ingredient.name %></li>
+    <li><%= ci.quantity %> of <%= ci.ingredient.name %></li>
   <% end %>
   </ul>
 </p>

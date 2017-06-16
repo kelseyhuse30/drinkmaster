@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170529182840) do
+ActiveRecord::Schema.define(version: 20170616202814) do
 
   create_table "cocktail_ingredients", force: :cascade do |t|
     t.integer  "cocktail_id"
@@ -29,6 +29,14 @@ ActiveRecord::Schema.define(version: 20170529182840) do
     t.boolean  "alcoholic"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "cocktail_id"
+    t.text     "comment"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "ingredients", force: :cascade do |t|

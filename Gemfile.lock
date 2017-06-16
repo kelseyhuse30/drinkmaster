@@ -25,6 +25,8 @@ GEM
       erubis (~> 2.7.0)
       rails-dom-testing (~> 2.0)
       rails-html-sanitizer (~> 1.0, >= 1.0.3)
+    active_model_serializers (0.9.4)
+      activemodel (>= 3.2)
     activejob (5.0.3)
       activesupport (= 5.0.3)
       globalid (>= 0.3.6)
@@ -66,6 +68,10 @@ GEM
       railties (>= 4.1.0, < 5.1)
       responders
       warden (~> 1.2.3)
+    dotenv (2.2.1)
+    dotenv-rails (2.2.1)
+      dotenv (= 2.2.1)
+      railties (>= 3.2, < 5.2)
     erubis (2.7.0)
     execjs (2.7.0)
     faraday (0.11.0)
@@ -206,11 +212,13 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  active_model_serializers!
   bcrypt (~> 3.1.7)!
   bootstrap (~> 4.0.0.alpha6)!
   byebug!
   coffee-rails (~> 4.2)!
   devise!
+  dotenv-rails!
   jbuilder (~> 2.5)!
   jquery-rails!
   listen (~> 3.0.5)!
@@ -230,4 +238,4 @@ DEPENDENCIES
   web-console (>= 3.3.0)!
 
 BUNDLED WITH
-   1.15.0
+   1.15.1

@@ -1,5 +1,6 @@
 class Cocktail < ApplicationRecord
 	has_many :cocktail_ingredients
+	has_many :comments
 	has_many :ingredients, through: :cocktail_ingredients
 	belongs_to :user
 	validates :name, presence: true

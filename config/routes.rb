@@ -10,6 +10,7 @@ Rails.application.routes.draw do
 
   resources :cocktails, only: [:show] do
   	resources :ingredients, only: [:index, :new, :create]
+    resources :comments
   end
 
   get '/mocktails' => 'cocktails#mocktails'
