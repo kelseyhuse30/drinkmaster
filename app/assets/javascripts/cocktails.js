@@ -15,7 +15,7 @@ function getComments(id) {
 		url: '/cocktails/' + id + '/comments'
 	})
 	.done(function(resp) {
-		debugger;
+		populateComments(resp["comments"]);
 	})
 };
 
