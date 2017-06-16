@@ -17,6 +17,11 @@ class CocktailsController < ApplicationController
     render 'index'
   end
 
+  def ordered
+    @cocktails = Cocktail.order_by_ingredients
+    render 'index'
+  end
+
   # GET /cocktails/1
   # GET /cocktails/1.json
   def show
@@ -28,7 +33,6 @@ class CocktailsController < ApplicationController
     @cocktail = Cocktail.new
     5.times { @cocktail.cocktail_ingredients.build.build_ingredient }
   end
-
   # GET /cocktails/1/edit
   def edit
   end
@@ -36,11 +40,11 @@ class CocktailsController < ApplicationController
   # POST /cocktails
   # POST /cocktails.json
   def create
-    @user = current_user
-    @cocktail = @user.cocktails.build(cocktail_params)
+    @cocktail = current_user.cocktails.build(cocktail_params)
     if @cocktail.save
       redirect_to cocktail_path(@cocktail)
     else
+      5.times { @cocktail.cocktail_ingredients.build.build_ingredient }
       render 'new'
     end
   end

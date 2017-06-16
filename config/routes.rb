@@ -13,5 +13,6 @@ Rails.application.routes.draw do
   end
 
   get '/mocktails' => 'cocktails#mocktails'
+  get '/ordered' => 'cocktails#ordered'
 
 end
