@@ -50,7 +50,6 @@ debugger;
 	$("#commentUl").empty();
 	var list = $("#commentUl")
 		comments.forEach(function(comment){
-		debugger;
 			list.append('<li><strong>' + comment["user"]["email"] + '</strong>' + ' said: ' + comment["comment"] + '</li>')
 		})
 	}
