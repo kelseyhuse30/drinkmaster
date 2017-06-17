@@ -25,6 +25,10 @@ class CocktailsController < ApplicationController
   # GET /cocktails/1
   # GET /cocktails/1.json
   def show
+    respond_to do |format|
+      format.html { render :show }
+      format.json { render json: @cocktail }
+    end
   end
 
   # GET /cocktails/new

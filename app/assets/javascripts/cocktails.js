@@ -8,7 +8,7 @@ function attachListeners(){
 		getComments(id);
 	});
 
-	$("next").on("click", function(){
+	$("#next").on("click", function(){
 		var id = $(this).data("id");
 		getCocktail(id);
 	})
@@ -32,3 +32,14 @@ if (comments.length > 0){
 			})
 		}
 };
+
+function getCocktail(id) {
+	$.ajax({
+		method: 'get',
+		url: '/cocktails/' + id,
+		dataType: 'json'
+	})
+	.done(function(resp) {
+		debugger;
+	})
+}
