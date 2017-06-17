@@ -1,64 +1,9 @@
-$(function(){
-	attachListeners();
-});
-
-function attachListeners(){
-	$("#comments").on("click", function(){
-		var id = $(this).data("id");
-		getComments(id);
-	});
-
+function cocktailListeners(){
 	$("#next").on("click", function(){
 		clearComments();
 		var id = $(this).data("id");
 		getCocktail(id);
 	})
-
-	$("#addComment").on("click", function(){
-		var cocktailId = $(this).data("id");
-		postComment(cocktailId);
-	})
-};
-
-function clearComments(){
-	$("#commentUl").empty();
-}
-
-function postComment(cocktailId) {
-	var commentText = $("#commentText").val()
-	var userId = $("#commentText").data("user")
-
-	$.ajax({
-		method: 'post',
-		url: '/cocktails/' + cocktailId + '/comments',
-		data: { comment: {comment: commentText, user_id: userId, cocktail_id: cocktailId} }
-		})
-		.done(function(resp){
-			$("#commentUl").append('<li><strong>' + resp["comment"]["user"]["email"] + '</strong>' + ' said: ' + resp["comment"]["comment"] + '</li>');
-			$("#commentText").val("");
-		})
-}
-
-function getComments(id) {
-	$.ajax({
-		method: 'get',
-		url: '/cocktails/' + id + '/comments'
-	})
-	.done(function(resp) {
-		populateComments(resp["comments"]);
-	})
-};
-
-function populateComments(comments){
-	var list = $("#commentUl")
-	if (comments.length > 0){
-	clearComments();
-		comments.forEach(function(comment){
-			list.append('<li><strong>' + comment["user"]["email"] + '</strong>' + ' said: ' + comment["comment"] + '</li>')
-		})
-	} else {
-		list.append('There are no comments on this cocktail yet.  Feel free to add one!')
-	}
 };
 
 function getCocktail(id) {
