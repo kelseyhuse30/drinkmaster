@@ -4,6 +4,10 @@
 <%= link_to 'Back to Index', cocktails_path, id:"back" %> |
 <a id="next" data-id="<%=@cocktail.id + 1 %>">See Next Cocktail</a>
 <br>
-<button class="comments" id="comments" data-id="<%=@cocktail.id%>">Load Comments</button>
-<div id="commentDiv"></div>
+<div id="commentDiv">
+	<ul id="commentUl">
+	</ul>
+</div>
+<textarea id="commentText" data-user="<%=current_user.id%>"></textarea><br>
 <button class="comments" id="addComment" data-id="<%=@cocktail.id%>">Add Comment</button>
+<button class="comments" id="comments" data-id="<%=@cocktail.id%>">Load Comments</button>

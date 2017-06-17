@@ -12,7 +12,27 @@ function attachListeners(){
 		var id = $(this).data("id");
 		getCocktail(id);
 	})
+
+	$("#addComment").on("click", function(){
+		var cocktailId = $(this).data("id");
+		postComment(cocktailId);
+	})
 };
+
+function postComment(cocktailId) {
+	var commentText = $("#commentText").val()
+	var userId = $("#commentText").data("user")
+
+	$.ajax({
+		method: 'post',
+		url: '/cocktails/' + cocktailId + '/comments',
+		data: { comment: {comment: commentText, user_id: userId} }
+		})
+		.done(function(resp){
+			$("#commentUl").append('<li><strong>' + resp["comment"]["user"]["email"] + '</strong>' + ' said: ' + resp["comment"]["comment"] + '</li>');
+			$("#commentText").val("");
+		})
+}
 
 function getComments(id) {
 	$.ajax({
@@ -25,12 +45,15 @@ function getComments(id) {
 };
 
 function populateComments(comments){
-if (comments.length > 0){
-	var list = $("#commentDiv").append('<ul></ul>').find('ul');
-			comments.forEach(function(comment){
-				list.append('<li id="' + comment["id"] + '">' + comment["comment"] + "</li>")
-			})
-		}
+debugger;
+	if (comments.length > 0){
+	$("#commentUl").empty();
+	var list = $("#commentUl")
+		comments.forEach(function(comment){
+		debugger;
+			list.append('<li><strong>' + comment["user"]["email"] + '</strong>' + ' said: ' + comment["comment"] + '</li>')
+		})
+	}
 };
 
 function getCocktail(id) {
