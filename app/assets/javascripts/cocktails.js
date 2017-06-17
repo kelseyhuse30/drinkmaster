@@ -9,6 +9,7 @@ function attachListeners(){
 	});
 
 	$("#next").on("click", function(){
+		clearComments();
 		var id = $(this).data("id");
 		getCocktail(id);
 	})
@@ -19,6 +20,10 @@ function attachListeners(){
 	})
 };
 
+function clearComments(){
+	$("#commentUl").empty();
+}
+
 function postComment(cocktailId) {
 	var commentText = $("#commentText").val()
 	var userId = $("#commentText").data("user")
@@ -26,7 +31,7 @@ function postComment(cocktailId) {
 	$.ajax({
 		method: 'post',
 		url: '/cocktails/' + cocktailId + '/comments',
-		data: { comment: {comment: commentText, user_id: userId} }
+		data: { comment: {comment: commentText, user_id: userId, cocktail_id: cocktailId} }
 		})
 		.done(function(resp){
 			$("#commentUl").append('<li><strong>' + resp["comment"]["user"]["email"] + '</strong>' + ' said: ' + resp["comment"]["comment"] + '</li>');
@@ -45,13 +50,14 @@ function getComments(id) {
 };
 
 function populateComments(comments){
-debugger;
-	if (comments.length > 0){
-	$("#commentUl").empty();
 	var list = $("#commentUl")
+	if (comments.length > 0){
+	clearComments();
 		comments.forEach(function(comment){
 			list.append('<li><strong>' + comment["user"]["email"] + '</strong>' + ' said: ' + comment["comment"] + '</li>')
 		})
+	} else {
+		list.append('There are no comments on this cocktail yet.  Feel free to add one!')
 	}
 };
 
