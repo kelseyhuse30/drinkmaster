@@ -1,9 +1,9 @@
 <%= render 'cocktail', cocktail: @cocktail %>
 
-<%= link_to 'Edit', edit_cocktail_path(@cocktail) %> |
-<%= link_to 'Back', cocktails_path %> |
-<a id="next" data-id="<%=@cocktail.id + 1 %>">Next</a>
+<%= link_to 'Edit', edit_cocktail_path(@cocktail), id:"edit" %> |
+<%= link_to 'Back to Index', cocktails_path, id:"back" %> |
+<a id="next" data-id="<%=@cocktail.id + 1 %>">See Next Cocktail</a>
 <br>
-<button id="comments" data-id="<%=@cocktail.id%>">Load Comments</button>
+<button class="comments" id="comments" data-id="<%=@cocktail.id%>">Load Comments</button>
 <div id="commentDiv"></div>
-<button id="addComment" data-id="<%=@cocktail.id%>">Add Comment</button>
+<button class="comments" id="addComment" data-id="<%=@cocktail.id%>">Add Comment</button>

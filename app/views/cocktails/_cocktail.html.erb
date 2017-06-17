@@ -1,21 +1,15 @@
-<h3><%= cocktail.name %></h3>
+<h3 id="name"><%= cocktail.name %></h3>
 
-<p>
-  <%= alcoholic?(@cocktail) %><br>
-  <strong>Created by:</strong>
-  <%= link_to @cocktail.user.email, user_cocktails_path(@cocktail.user) %><br>
-</p>
+<p id="alcoholic"><%= alcoholic?(@cocktail) %></p>
+<strong>Created by:</strong>
+<%= link_to @cocktail.user.email, user_cocktails_path(@cocktail.user), id: "email" %><br>
 
-<p>
-  <strong>Instructions:</strong>
-  <%= @cocktail.instructions %>
-</p>
+<strong>Instructions:</strong>
+<p id="instructions"><%= @cocktail.instructions %></p>
 
-<p>
-  <%= link_to "Ingredients", cocktail_ingredients_path(@cocktail) %>
-  <ul>
+<strong>Ingredients:</strong>
+<ul id= "ingredientsList">
   <% @cocktail.cocktail_ingredients.each do |ci| %>
     <li><%= ci.quantity %> of <%= ci.ingredient.name %></li>
   <% end %>
-  </ul>
-</p>
+</ul>
