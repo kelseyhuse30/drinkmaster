@@ -1,4 +1,4 @@
 class CocktailIngredientSerializer < ActiveModel::Serializer
-  attributes :id, :quantity
+  attributes :quantity
   has_one :ingredient
 end
