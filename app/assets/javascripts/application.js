@@ -16,6 +16,7 @@
 //= require bootstrap-sprockets
 //= require turbolinks
 //= require_tree .
+//= require_self
 
 $(document).on('turbolinks:load', function(){
 	cocktailListeners();
