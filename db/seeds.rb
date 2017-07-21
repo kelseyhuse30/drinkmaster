@@ -15,7 +15,7 @@ users = User.create([
 	{ email: 'user7@gmail.com' },
 	{ email: 'user8@gmail.com' },
 	{ email: 'user9@gmail.com' },
-	{ email: 'user10@gmail.com' },
+	{ email: 'user10@gmail.com' }
 	])
 	}
 
@@ -52,7 +52,7 @@ ingredients = Ingredient.create([
 	{ name: 'Sprite' },
 	{ name: 'Mint' },
 	{ name: 'Sugar' },
-	{ name: 'Bulleit Rye' },
+	{ name: 'Bulleit Rye' }
 	])
 
 
