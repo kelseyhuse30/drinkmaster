@@ -16,7 +16,10 @@
 //= require bootstrap-sprockets
 //= require turbolinks
 //= require_tree .
+//= require almond
 //= require_self
+
+require(['application/boot']);
 
 $(document).on('turbolinks:load', function(){
 	cocktailListeners();

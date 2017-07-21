@@ -68,6 +68,7 @@ end
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-tether', '>= 1.3.3'
+  gem 'rails-assets-almond'
 end
 
 ruby "2.3.0"
